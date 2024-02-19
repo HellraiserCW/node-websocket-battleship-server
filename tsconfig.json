@@ -1,0 +1,33 @@
+{
+      "compilerOptions": {
+            "target": "es5",
+            "module": "NodeNext",
+            "moduleResolution": "nodeNext",
+            "rootDir": "./",
+            "outDir": "./dist",
+            "jsx": "react",
+            "esModuleInterop": true,
+            "forceConsistentCasingInFileNames": true,
+            "skipLibCheck": true,
+            "allowJs": true,
+            "allowSyntheticDefaultImports": true,
+            "strict": true,
+            "noImplicitAny": true,
+            "strictNullChecks": true,
+            "strictFunctionTypes": true,
+            "lib": [
+                  "decorators",
+                  "dom",
+                  "es5",
+                  "scripthost",
+                  "dom"
+            ]
+      },
+      "include": ["src", ".eslintrc.json", "webpack.config.ts", "jest.config.ts", "babel.config.js", "./front/main.js"],
+      "exclude": ["node_modules"],
+      "ts-node": {
+            "compilerOptions": {
+                  "module": "CommonJS"
+            }
+      }
+}

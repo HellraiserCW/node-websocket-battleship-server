@@ -8,9 +8,11 @@ import { attack } from '../controllers/attack.controller';
 import { randomAttack } from '../controllers/random-attack.controller';
 import { Room } from '../models/room.model';
 import { Game } from '../models/game.model';
+import { singlePlay } from '../controllers/single-play.controller';
 
 export enum RequestTypes {
     Reg = 'reg',
+    SinglePlay = 'single_play',
     UpdateWinners = 'update_winners',
     CreateRoom = 'create_room',
     AddUserToRoom = 'add_user_to_room',
@@ -33,6 +35,7 @@ export const { userDatabase, roomDatabase, gameDatabase, socketDatabase }: Datab
 
 export const controllerMap: Partial<Record<RequestTypes, ControllerFunction>> = {
     [RequestTypes.Reg]: reg,
+    [RequestTypes.SinglePlay]: singlePlay,
     [RequestTypes.CreateRoom]: createRoom,
     [RequestTypes.AddUserToRoom]: addUserToRoom,
     [RequestTypes.AddShips]: addShips,

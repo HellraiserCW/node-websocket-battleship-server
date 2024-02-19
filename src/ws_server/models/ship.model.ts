@@ -1,3 +1,7 @@
+type ShipType = 'small' | 'medium' | 'large' | 'huge';
+
+type ShipStatus = 'killed' | 'shot';
+
 export interface ShipInfo {
     position: {
         x: number;
@@ -5,27 +9,20 @@ export interface ShipInfo {
     };
     direction: boolean;
     length: number;
-    type: 'small' | 'medium' | 'large' | 'huge';
+    type: ShipType;
 }
 
-export interface Ship {
-    position: {
-        x: number;
-        y: number
-    };
-    direction: boolean;
-    length: number;
-    type: 'small' | 'medium' | 'large' | 'huge';
+export interface Ship extends ShipInfo {
     shipPositionMap: Map<string, boolean>;
 
-    getStatus(): 'killed' | 'shot';
+    getStatus(): ShipStatus;
 }
 
 export class ShipClass implements Ship {
     position: { x: number; y: number };
     direction: boolean;
     length: number;
-    type: 'small' | 'medium' | 'large' | 'huge';
+    type: ShipType;
     shipPositionMap: Map<string, boolean>;
 
     constructor({ position, direction, length, type }: ShipInfo) {
@@ -36,7 +33,7 @@ export class ShipClass implements Ship {
         this.shipPositionMap = this.generateShip();
     }
 
-    getStatus(): 'killed' | 'shot' {
+    getStatus(): ShipStatus {
         const values: boolean[] = Array.from(this.shipPositionMap.values());
 
         return values.every((value) => value)

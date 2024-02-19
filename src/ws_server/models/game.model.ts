@@ -37,7 +37,7 @@ export class GameClass implements Game {
 
     createBoard(playerId: number): void {
         const matrixSize = 10;
-        const matrixMap = new Map<string, boolean>();
+        const matrixMap: Map<string, boolean> = new Map<string, boolean>();
 
         for (let x = 0; x < matrixSize; x++) {
             for (let y = 0; y < matrixSize; y++) {
@@ -48,6 +48,7 @@ export class GameClass implements Game {
         this.board.set(playerId, matrixMap);
 
     }
+
     private generateNextId(): number {
         return GameClass.lastId++;
     }

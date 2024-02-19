@@ -15,10 +15,15 @@
     "author": "Kostiantyn Sakharov",
     "keywords": [],
     "license": "MIT",
+    "dependencies": {
+        "dotenv": "^16.4.1",
+        "uuid": "^9.0.1",
+        "ws": "^8.16.0"
+    },
     "devDependencies": {
+        "@types/node": "^20.11.17",
         "@types/uuid": "^9.0.8",
         "@types/webpack": "^5.28.5",
-        "@types/node": "^20.11.17",
         "@types/ws": "^8.5.10",
         "@typescript-eslint/eslint-plugin": "^6.21.0",
         "@typescript-eslint/parser": "^6.21.0",
@@ -35,10 +40,5 @@
         "typescript": "^5.3.3",
         "webpack": "^5.90.1",
         "webpack-cli": "^5.1.4"
-    },
-    "dependencies": {
-        "dotenv": "^16.4.1",
-        "uuid": "^9.0.1",
-        "ws": "^8.16.0"
     }
 }

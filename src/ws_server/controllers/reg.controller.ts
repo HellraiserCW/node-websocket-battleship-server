@@ -2,6 +2,8 @@ import { RegServerData, RegUserData } from '../models/app.model';
 import { RequestTypes, socketDatabase, userDatabase } from '../config/app.config';
 import { User, UserClass } from '../models/user.model';
 import { generateResponseDto } from '../helpers/helpers';
+import { updateRoom } from './update-room.controller';
+import { updateWinners } from './update-winners.controller';
 
 export const reg = (userId: number, data: string): void => {
     const { name, password }: RegUserData = JSON.parse(data);
@@ -20,4 +22,7 @@ export const reg = (userId: number, data: string): void => {
     const response: string = generateResponseDto(RequestTypes.Reg, JSON.stringify(userData));
 
     socketDatabase[userId].send(response);
+
+    !isUsernameExists && updateRoom();
+    !isUsernameExists && updateWinners();
 };

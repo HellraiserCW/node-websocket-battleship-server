@@ -18,7 +18,7 @@ const handleRequest = (type: RequestTypes, userId: number, data?: any) => {
         : console.log(`Unknown request type: ${type}`);
 }
 
-const onConnect = (wsClient: any): void => {
+const onConnect = (wsClient: WebSocket): void => {
     const userId: number = getUserId();
     console.log(`User with id: ${userId} connected`);
 

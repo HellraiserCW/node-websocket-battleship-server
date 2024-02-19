@@ -35,3 +35,12 @@ export interface RegServerData {
     error: boolean;
     errorText: string;
 }
+
+export interface UpdateWinnersServerData {
+    name: string;
+    wins: number;
+}
+
+export type AddUserToRoomClientData = {
+    indexRoom: number;
+};

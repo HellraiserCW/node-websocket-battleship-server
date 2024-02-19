@@ -12,7 +12,7 @@ export interface Game {
     createBoard(playerId: number): void;
 }
 
-export class GameImpl implements Game {
+export class GameClass implements Game {
     gameId: number;
     players: number[];
     ships: Map<number, Ship[]>;
@@ -49,6 +49,6 @@ export class GameImpl implements Game {
 
     }
     private generateNextId(): number {
-        return GameImpl.lastId++;
+        return GameClass.lastId++;
     }
 }

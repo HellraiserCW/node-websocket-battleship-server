@@ -5,7 +5,7 @@ export interface User {
     wins: number;
 }
 
-export class UserImpl implements User {
+export class UserClass implements User {
     wins: number;
 
     constructor(

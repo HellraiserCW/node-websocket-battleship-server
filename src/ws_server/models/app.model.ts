@@ -1,3 +1,5 @@
+import WebSocket from 'ws';
+
 import { RequestTypes } from '../config/app.config';
 import { User } from './user.model';
 import { Room } from './room.model';
@@ -9,15 +11,27 @@ export interface ClientRequest {
     id: 0;
 }
 
-interface SocketDb {
+interface SocketDatabase {
     [x: string]: WebSocket;
 }
 
-export interface Store {
-    userDb: Map<number, User>;
-    roomDb: Map<number, Room>;
-    gameDb: Map<number, Game>;
-    socketDb: SocketDb;
+export interface DatabaseStore {
+    userDatabase: Map<number, User>;
+    roomDatabase: Map<number, Room>;
+    gameDatabase: Map<number, Game>;
+    socketDatabase: SocketDatabase;
 }
 
 export type ControllerFunction = (id: number, data?: any) => void;
+
+export interface RegUserData {
+    name: string;
+    password: string;
+}
+
+export interface RegServerData {
+    name: string;
+    index: number;
+    error: boolean;
+    errorText: string;
+}

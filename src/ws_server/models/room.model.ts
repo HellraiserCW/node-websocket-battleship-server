@@ -10,7 +10,7 @@ export interface Room {
     addUser(user: RoomUsersType): void;
 }
 
-export class RoomImpl implements Room {
+export class RoomClass implements Room {
     roomId: number;
     roomUsers: RoomUsersType[];
     private static lastId: number = 0;
@@ -26,6 +26,6 @@ export class RoomImpl implements Room {
 
 
     private generateNextId(): number {
-        return RoomImpl.lastId++;
+        return RoomClass.lastId++;
     }
 }

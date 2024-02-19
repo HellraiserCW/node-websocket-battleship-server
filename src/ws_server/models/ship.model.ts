@@ -21,7 +21,7 @@ export interface Ship {
     getStatus(): 'killed' | 'shot';
 }
 
-export class ShipImpl implements Ship {
+export class ShipClass implements Ship {
     position: { x: number; y: number };
     direction: boolean;
     length: number;

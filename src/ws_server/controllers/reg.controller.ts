@@ -1,7 +1,7 @@
 import { RegServerData, RegUserData } from '../models/app.model';
 import { RequestTypes, socketDatabase, userDatabase } from '../config/app.config';
 import { User, UserClass } from '../models/user.model';
-import { generateResponseDto } from '../helpers/helpers';
+import { createResponseJson } from '../helpers/helpers';
 import { updateRoom } from './update-room.controller';
 import { updateWinners } from './update-winners.controller';
 
@@ -19,7 +19,7 @@ export const reg = (userId: number, data: string): void => {
         error: isUsernameExists,
         errorText: isUsernameExists ? 'User already logged in!' : '',
     };
-    const response: string = generateResponseDto(RequestTypes.Reg, JSON.stringify(userData));
+    const response: string = createResponseJson(RequestTypes.Reg, JSON.stringify(userData));
 
     socketDatabase[userId].send(response);
 

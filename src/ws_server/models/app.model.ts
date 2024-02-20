@@ -4,6 +4,7 @@ import { RequestTypes } from '../config/app.config';
 import { User } from './user.model';
 import { Room } from './room.model';
 import { Game } from './game.model';
+import { ShipInfo } from './ship.model';
 
 export interface ClientRequest {
     type: RequestTypes;
@@ -41,6 +42,12 @@ export interface UpdateWinnersServerData {
     wins: number;
 }
 
-export type AddUserToRoomClientData = {
+export interface AddUserToRoomClientData {
     indexRoom: number;
-};
+}
+
+export interface AddShipsClientData {
+    gameId: number;
+    ships: ShipInfo[];
+    indexPlayer: number;
+}

@@ -1,5 +1,3 @@
-import WebSocket from 'ws';
-
 import { Room } from '../models/room.model';
 import { RequestTypes, roomDatabase, socketDatabase } from '../config/app.config';
 import { createResponseJson } from '../helpers/helpers';
@@ -9,8 +7,6 @@ export const updateRoom = (): void => {
     const response: string = createResponseJson(RequestTypes.UpdateRoom, JSON.stringify(rooms));
 
     Object.keys(socketDatabase).forEach((id) => {
-        const socket: WebSocket = socketDatabase[id];
-
-        socket.send(response);
+        socketDatabase[id].send(response);
     });
 };

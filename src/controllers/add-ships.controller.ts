@@ -27,11 +27,11 @@ const startGame = (game: Game): void => {
     turn(game);
 };
 
-export const addShips = (_userId: number, data: string): void => {
+export const addShips = (_userId: string, data: string): void => {
     const { gameId, ships, indexPlayer }: AddShips = JSON.parse(data);
     const setupShips: Ship[] = [];
 
-    ships.forEach((ship: ShipInfo) => setupShips.push(new ShipClass(ship)));
+    ships.forEach(({ position, direction, length, type }: ShipInfo) => setupShips.push(new ShipClass(position, direction, length, type)));
 
     const game: Game = gameDatabase.get(gameId)!;
 

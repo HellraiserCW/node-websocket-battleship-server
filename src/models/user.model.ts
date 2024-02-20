@@ -1,18 +1,15 @@
 export interface User {
-    index: number;
+    index: string;
     name: string;
     password: string;
     wins: number;
 }
 
 export class UserClass implements User {
-    wins: number;
-
     constructor(
-        public index: number,
+        public index: string,
         public name: string,
         public password: string,
-    ) {
-        this.wins = 0;
-    }
+        public wins: number = 0
+    ) {}
 }

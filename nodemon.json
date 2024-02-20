@@ -2,5 +2,5 @@
     "watch": ["src"],
     "ext": "ts",
     "ignore": ["node_modules"],
-    "exec": "npx ts-node ./src/ws_server/index.ts"
+    "exec": "npx ts-node ./src/index.ts"
 }

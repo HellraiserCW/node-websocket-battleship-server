@@ -15,30 +15,25 @@ export interface ShipInfo {
 }
 
 export interface Ship extends ShipInfo {
-    shipPositionMap: Map<string, boolean>;
-
-    getStatus(): ShipStatus;
+    shipPosition: Map<string, boolean>;
+    getShipStatus(): ShipStatus;
 }
 
 export class ShipClass implements Ship {
-    position: { x: number; y: number };
-    direction: boolean;
-    length: number;
-    type: ShipType;
-    shipPositionMap: Map<string, boolean>;
-
-    constructor({ position, direction, length, type }: ShipInfo) {
-        this.position = position;
-        this.direction = direction;
-        this.length = length;
-        this.type = type;
-        this.shipPositionMap = this.generateShip();
+    constructor(
+        public position: Position,
+        public direction: boolean,
+        public length: number,
+        public type: ShipType,
+        public shipPosition: Map<string, boolean> = new Map<string, boolean>()
+    ) {
+        this.shipPosition = this.generateShip();
     }
 
-    getStatus(): ShipStatus {
-        const values: boolean[] = Array.from(this.shipPositionMap.values());
+    getShipStatus(): ShipStatus {
+        const positionValues: boolean[] = Array.from(this.shipPosition.values());
 
-        return values.every((value) => value)
+        return positionValues.every((value) => value)
             ? 'killed'
             : 'shot';
     }
@@ -47,9 +42,6 @@ export class ShipClass implements Ship {
         const map: Map<string, boolean> = new Map<string, boolean>();
 
         for (let i = 0; i < this.length; i += 1) {
-            // this.direction
-            //     ? map.set(`${this.position.x}-${this.position.y + i}`, false)
-            //     : map.set(`${this.position.x + i}-${this.position.y}`, false);
             map.set(
                 this.direction
                     ? `${this.position.x}-${this.position.y + i}`

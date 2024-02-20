@@ -3,7 +3,7 @@ import path from 'path';
 export default {
         target: 'node',
         mode: 'production',
-        entry: path.resolve(__dirname, 'src', 'ws_server', 'index.ts'),
+        entry: path.resolve(__dirname, 'src', 'index.ts'),
         output: {
             path: path.resolve(__dirname, 'dist'),
             filename: 'bundle.js',

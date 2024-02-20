@@ -8,8 +8,7 @@
     },
     "scripts": {
         "start:dev": "nodemon",
-        "start:ws": "npm run build && node ./dist/bundle.js",
-        "start:http": "node ./src/http_server/index.js",
+        "start": "npm run build && node ./dist/bundle.js",
         "build": "webpack --env mode=production"
     },
     "author": "Kostiantyn Sakharov",

@@ -5,7 +5,7 @@ import { createResponseJson, isWrongPassword } from '../helpers/helpers';
 import { updateRoom } from './update-room.controller';
 import { updateWinners } from './update-winners.controller';
 
-export const reg = (userId: number, data: string): void => {
+export const reg = (userId: string, data: string): void => {
     const { name, password }: Reg = JSON.parse(data);
     const wrongPassword: boolean = isWrongPassword(name, password);
     const newUser: UserClass = new UserClass(userId, name, password);
@@ -16,7 +16,7 @@ export const reg = (userId: number, data: string): void => {
         name: newUser.name,
         index: newUser.index,
         error: wrongPassword,
-        errorText: wrongPassword ? 'Password incorrect!' : '',
+        errorText: wrongPassword ? 'Password incorrect!' : ''
     }));
 
     socketDatabase[userId].send(response);

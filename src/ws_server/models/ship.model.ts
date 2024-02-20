@@ -1,6 +1,6 @@
 type ShipType = 'small' | 'medium' | 'large' | 'huge';
 
-type ShipStatus = 'killed' | 'shot';
+export type ShipStatus = 'killed' | 'shot';
 
 export interface Position {
     x: number;

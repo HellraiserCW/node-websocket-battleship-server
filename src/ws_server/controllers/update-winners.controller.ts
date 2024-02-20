@@ -3,13 +3,13 @@ import WebSocket from 'ws';
 import { createResponseJson } from '../helpers/helpers';
 import { RequestTypes, socketDatabase, userDatabase } from '../config/app.config';
 import { User } from '../models/user.model';
-import { UpdateWinnersServerData } from '../models/app.model';
+import { UpdateWinners } from '../models/app.model';
 
 export const updateWinners = (): void => {
     const users: User[] = Array.from(userDatabase.values());
-    const winners: UpdateWinnersServerData[] = users
+    const winners: UpdateWinners[] = users
         .filter((user: User): boolean => user.wins > 0)
-        .map(({ name, wins }: User): UpdateWinnersServerData => ({ name, wins }));
+        .map(({ name, wins }: User): UpdateWinners => ({ name, wins }));
     const response: string = createResponseJson(RequestTypes.UpdateWinners, JSON.stringify(winners));
 
     Object.keys(socketDatabase).forEach((id) => {

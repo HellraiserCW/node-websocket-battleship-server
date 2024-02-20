@@ -1,4 +1,4 @@
-import { ControllerFunction, DatabaseStore } from '../models/app.model';
+import { ControllerFunction, DatabaseStorage } from '../models/app.model';
 import { User } from '../models/user.model';
 import { reg } from '../controllers/reg.controller';
 import { createRoom } from '../controllers/create-room.controller';
@@ -26,7 +26,7 @@ export enum RequestTypes {
     Finish = 'finish'
 }
 
-export const { userDatabase, roomDatabase, gameDatabase, socketDatabase }: DatabaseStore = {
+export const { userDatabase, roomDatabase, gameDatabase, socketDatabase }: DatabaseStorage = {
     userDatabase: new Map<number, User>(),
     roomDatabase: new Map<number, Room>(),
     gameDatabase: new Map<number, Game>(),
@@ -42,3 +42,9 @@ export const controllerMap: Partial<Record<RequestTypes, ControllerFunction>> = 
     [RequestTypes.Attack]: attack,
     [RequestTypes.RandomAttack]: randomAttack
 };
+
+export enum StatusTypes {
+    miss = 'miss',
+    killed = 'killed',
+    shot = 'shot'
+}

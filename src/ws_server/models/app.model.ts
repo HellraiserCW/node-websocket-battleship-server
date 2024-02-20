@@ -16,7 +16,7 @@ interface SocketDatabase {
     [x: string]: WebSocket;
 }
 
-export interface DatabaseStore {
+export interface DatabaseStorage {
     userDatabase: Map<number, User>;
     roomDatabase: Map<number, Room>;
     gameDatabase: Map<number, Game>;
@@ -25,29 +25,29 @@ export interface DatabaseStore {
 
 export type ControllerFunction = (id: number, data?: any) => void;
 
-export interface RegUserData {
+export interface Reg {
     name: string;
     password: string;
 }
 
-export interface RegServerData {
-    name: string;
-    index: number;
-    error: boolean;
-    errorText: string;
-}
-
-export interface UpdateWinnersServerData {
+export interface UpdateWinners {
     name: string;
     wins: number;
 }
 
-export interface AddUserToRoomClientData {
+export interface AddUserToRoom {
     indexRoom: number;
 }
 
-export interface AddShipsClientData {
+export interface AddShips {
     gameId: number;
     ships: ShipInfo[];
+    indexPlayer: number;
+}
+
+export interface Attack {
+    gameId: number;
+    x: number;
+    y: number;
     indexPlayer: number;
 }

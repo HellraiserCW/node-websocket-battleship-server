@@ -3,7 +3,7 @@ import WebSocket from 'ws';
 import { gameDatabase, RequestTypes, roomDatabase, socketDatabase, userDatabase } from '../config/app.config';
 import { GameClass } from '../models/game.model';
 import { createResponseJson } from '../helpers/helpers';
-import { AddUserToRoomClientData } from '../models/app.model';
+import { AddUserToRoom } from '../models/app.model';
 import { Room } from '../models/room.model';
 import { User } from '../models/user.model';
 import { updateRoom } from './update-room.controller';
@@ -11,7 +11,7 @@ import { updateRoom } from './update-room.controller';
 const isUserInRoom = (userId: number, room: Room) => room.roomUsers.find((user) => user.index === userId);
 
 export const addUserToRoom = (userId: number, data: string): void => {
-    const { indexRoom }: AddUserToRoomClientData = JSON.parse(data);
+    const { indexRoom }: AddUserToRoom = JSON.parse(data);
     const room: Room = roomDatabase.get(indexRoom)!;
 
     if (isUserInRoom(userId, room)) return;

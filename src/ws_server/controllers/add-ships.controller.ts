@@ -1,4 +1,4 @@
-import { AddShipsClientData } from '../models/app.model';
+import { AddShips } from '../models/app.model';
 import { Ship, ShipClass, ShipInfo } from '../models/ship.model';
 import { gameDatabase, RequestTypes, socketDatabase } from '../config/app.config';
 import { Game } from '../models/game.model';
@@ -28,7 +28,7 @@ const startGame = (game: Game): void => {
 };
 
 export const addShips = (_userId: number, data: string): void => {
-    const { gameId, ships, indexPlayer }: AddShipsClientData = JSON.parse(data);
+    const { gameId, ships, indexPlayer }: AddShips = JSON.parse(data);
     const setupShips: Ship[] = [];
 
     ships.forEach((ship: ShipInfo) => setupShips.push(new ShipClass(ship)));

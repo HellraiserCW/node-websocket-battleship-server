@@ -30,11 +30,14 @@ export const isWrongPassword = (name: string, password: string): boolean => {
 };
 
 export const createResponseJson = (type: RequestTypes, data: string) => {
-    return JSON.stringify({
+    const response = JSON.stringify({
         type,
         data,
         id: 0
     });
+
+    console.log(`Outgoing response: ${type}`);
+    return response;
 };
 
 export const removeUnavailableRooms = (userId: string): void => {

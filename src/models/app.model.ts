@@ -22,7 +22,7 @@ export interface Reg {
     password: string;
 }
 
-export interface UpdateWinners {
+export interface Winners {
     name: string;
     wins: number;
 }

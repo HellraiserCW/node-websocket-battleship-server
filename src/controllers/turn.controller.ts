@@ -13,6 +13,9 @@ export const turn = (game: Game): void => {
     });
 
     if (game.turn === 'computer') {
-        attack(game.turn, JSON.stringify({ gameId: game.gameId, indexPlayer: game.turn }));
+        attack(game.turn, JSON.stringify({
+            gameId: game.gameId,
+            indexPlayer: game.turn
+        }));
     }
 };

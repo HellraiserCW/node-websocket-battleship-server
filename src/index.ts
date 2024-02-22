@@ -3,9 +3,10 @@ import dotenv from 'dotenv';
 
 import { ClientRequest, ControllerFunction } from './models/app.model';
 import { controllerMap, RequestTypes, socketDatabase } from './config/app.config';
-import { getUserId, removeUnavailableRooms, validateJsonMessage } from './helpers/helpers';
+import { getUserId, validateJsonMessage } from './helpers/helpers';
 import { httpServer } from './http_server';
 import { updateRoom } from './controllers/update-room.controller';
+import { removeUnavailableRooms } from './services/add-user-to-room.service';
 
 dotenv.config();
 

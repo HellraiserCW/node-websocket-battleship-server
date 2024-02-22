@@ -1,42 +1,28 @@
-import { RoomClass } from '../models/room.model';
 import {
     computerShipsArrangements,
-    gameDatabase,
     RequestTypes,
-    roomDatabase,
     socketDatabase,
-    userDatabase,
 } from '../config/app.config';
 import { createResponseJson } from '../helpers/helpers';
-import { Ship, ShipClass, ShipInfo } from '../models/ship.model';
-import { GameClass } from '../models/game.model';
-import { User } from '../models/user.model';
+import { ShipInfo } from '../models/ship.model';
 import { updateRoom } from './update-room.controller';
+import { createSinglePlayGame } from '../services/single-play.service';
+import { addShipsToBoard } from '../services/add-ships.service';
+import { Game } from '../models/game.model';
+import { removeUnavailableRooms } from '../services/add-user-to-room.service';
 
-export const singlePlay = (id: string): void => {
-    const room: RoomClass = new RoomClass();
-    const { index, name }: User = userDatabase.get(id)!;
+export const singlePlay = (userId: string): void => {
+    const game: Game = createSinglePlayGame(userId);
+    const response: string = createResponseJson(RequestTypes.CreateGame, JSON.stringify({
+        idGame: game.gameId,
+        idPlayer: userId
+    }));
 
-    room.addUser({ index, name });
-    room.addUser({ index: 'computer', name: 'computer' });
-    roomDatabase.set(room.roomId, room);
+    socketDatabase[userId].send(response);
 
-    const newGame: GameClass = new GameClass();
+    const randomComputerArrangement: ShipInfo[] = computerShipsArrangements[Math.floor(Math.random() * computerShipsArrangements.length)];
 
-    room.roomUsers.forEach(({ index }) => newGame.addPlayer(index));
-    gameDatabase.set(newGame.gameId, newGame);
-
-    const response: string = createResponseJson(RequestTypes.CreateGame, JSON.stringify({ idGame: newGame.gameId, idPlayer: index }));
-
-    socketDatabase[index].send(response);
-
-    const generatedShips: Ship[] = [];
-    const randomComputerArrangement: ShipInfo[] = computerShipsArrangements[Math.floor(Math.random() * computerShipsArrangements.length)]
-
-    randomComputerArrangement.forEach(({ position, direction, length, type }: ShipInfo) => generatedShips.push(new ShipClass(position, direction, length, type)));
-    newGame.addShips('computer', generatedShips);
-    newGame.createBoard('computer');
-
-    roomDatabase.delete(room.roomId);
+    addShipsToBoard(game.gameId, randomComputerArrangement, 'computer');
+    removeUnavailableRooms(userId);
     updateRoom();
 };
